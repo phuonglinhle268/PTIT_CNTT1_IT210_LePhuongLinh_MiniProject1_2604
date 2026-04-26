@@ -39,7 +39,7 @@ public class TodoController {
     @GetMapping("/edit/{id}")
     public String editForm(@PathVariable Long id, Model model) {
         Todo todo = todoRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Không tìm thấy task với id: " + id));
+                .orElseThrow(() -> new IllegalArgumentException("Không tìm thấy task"));
 
 
         TodoDTO dto = new TodoDTO();
