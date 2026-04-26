@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Personal Todo App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Personal Todo App</h2>
+
+    <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+
+    <a class="btn btn-primary mb-3" th:href="@{/create}">Thêm mới</a>
+
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nội dung</th>
+            <th>Due Date</th>
+            <th>Trạng thái</th>
+            <th>Ưu tiên</th>
+            <th>Hành động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="t : ${todos}">
+            <td th:text="${t.id}"></td>
+            <td th:text="${t.content}"></td>
+            <td th:text="${t.dueDate}"></td>
+            <td th:text="${t.status}"></td>
+            <td th:text="${t.priority}"></td>
+            <td>
+                <a class="btn btn-warning btn-sm"
+                   th:href="@{/edit/{id}(id=${t.id})}">Sửa</a>
+
+                <a class="btn btn-danger btn-sm"
+                   th:href="@{/delete/{id}(id=${t.id})}"
+                   onclick="return confirm('Bạn có chắc muốn xóa không?')">Xóa</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
